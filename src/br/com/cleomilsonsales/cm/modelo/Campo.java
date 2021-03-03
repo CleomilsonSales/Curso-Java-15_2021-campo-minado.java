@@ -3,6 +3,8 @@ package br.com.cleomilsonsales.cm.modelo;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.cleomilsonsales.cm.excecao.ExplosaoException;
+
 public class Campo {
 	private final int linha;
 	private final int coluna;
@@ -39,6 +41,93 @@ public class Campo {
 			return true;
 		}else {
 			return false;
+		}
+	}
+	
+	void alternarMarcacao() {
+		//para impedir abrir um campo marcado
+		if (!aberto) {
+			marcado = !marcado;
+		}
+	}
+	
+	boolean abrir() {
+		//ação para abrir campo
+		if(!aberto && !marcado) {
+			aberto = true;
+			
+			if(minado) {
+				//exceção para interromper a aplicação
+				throw new ExplosaoException();
+			}
+			
+			if (vizinhancaSegura()) {
+				vizinhos.forEach(v -> v.abrir());
+			}
+			
+			return true;
+		}else {
+			return false;
+		}
+		
+	}
+	
+	void minar() {
+		minado =  true;
+	}
+	
+	boolean vizinhancaSegura() {
+		return vizinhos.stream().noneMatch(v -> v.minado);
+	}
+	
+	//boa pratica: quando for algo boolean não usar o termo GET mas IS
+	public boolean isMarcado() {
+		return marcado;
+	}
+	
+	public boolean isAberto() {
+		return aberto;
+	}
+	
+	public boolean isFechado() {
+		return !isAberto();
+	}
+
+	public int getLinha() {
+		return linha;
+	}
+
+	public int getColuna() {
+		return coluna;
+	}
+	
+	boolean objetivoAlcancado() {
+		boolean desvendado = !minado && aberto;
+		boolean protegido = minado && marcado;
+		return desvendado || protegido;
+	}
+	
+	long minasNaVizinhanca() {
+		return vizinhos.stream().filter(v -> v.minado).count();
+	}
+	
+	void reiniciar() {
+		aberto = false;
+		minado = false;
+		marcado = false;
+	}
+	
+	public String toString() {
+		if (marcado) {
+			return "x";
+		}else if (aberto && minado) {
+			return "*";
+		}else if (aberto && minasNaVizinhanca() > 0) {
+			return String.valueOf(minasNaVizinhanca());
+		}else if (aberto) {
+			return " ";
+		}else {
+			return "?";
 		}
 	}
 }
