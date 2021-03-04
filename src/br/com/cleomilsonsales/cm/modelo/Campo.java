@@ -76,6 +76,10 @@ public class Campo {
 		minado =  true;
 	}
 	
+	public boolean isMinado() {
+		return minado;
+	}
+	
 	boolean vizinhancaSegura() {
 		return vizinhos.stream().noneMatch(v -> v.minado);
 	}
