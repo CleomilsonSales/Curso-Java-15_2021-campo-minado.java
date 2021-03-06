@@ -54,7 +54,8 @@ public class TabuleiroConsole {
 	private void cicloDoJogo() {
 		try {
 			while(!tabuleiro.objetivoAlcancado()) {
-		
+				System.out.println("Existem "+tabuleiro.getMinas()+" minas");
+				
 				System.out.println(tabuleiro);
 				
 				String digitado = capturarValorDigitado("Digite o x e y do campo (Ex.: 2,3): ");

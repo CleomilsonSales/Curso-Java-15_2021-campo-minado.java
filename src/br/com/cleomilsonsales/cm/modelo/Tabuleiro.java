@@ -112,4 +112,10 @@ public class Tabuleiro {
 		sb.append("x");
 		return sb.toString();
 	}
+
+	public int getMinas() {
+		return minas;
+	}
+	
+	
 }
