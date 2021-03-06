@@ -11,7 +11,7 @@ public class Aplicacao {
 		 * quando um vizinho estiver bomba ele para de abrir e diz quantas bombas tem na vizinhaça do campo aberto
 		 * marcado é para não abrir
 		 * */
-		Tabuleiro tabuleiro = new Tabuleiro(6, 6, 4);
+		Tabuleiro tabuleiro = new Tabuleiro(10, 10, 8);
 		new TabuleiroConsole(tabuleiro);
 		
 		/* Testes
