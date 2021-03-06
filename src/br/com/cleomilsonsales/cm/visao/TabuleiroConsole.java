@@ -23,6 +23,13 @@ public class TabuleiroConsole {
 		try {
 			boolean continuar = true;
 			
+			//Regras do jogo
+			System.out.println("Regras: Deverá informa qual campo com coordenadas x e y e depois se sera aberto ou (des)marcado");
+			System.out.println("Ao abrir um campo sera aberta vizinhança desse campo, se a vizinha for segura continuar sendo aberto");
+			System.out.println("Ao abrir um campos vizinhos e for localizado uma mina na vizinha, sera truncada a abertura de campos");
+			System.out.println("O campos proximo de minas serão sinalizadas com quantidade de minas na vizinhança");
+			System.out.println();
+			
 			while(continuar) {
 				
 				cicloDoJogo();
@@ -46,6 +53,7 @@ public class TabuleiroConsole {
 	private void cicloDoJogo() {
 		try {
 			while(!tabuleiro.objetivoAlcancado()) {
+		
 				System.out.println(tabuleiro);
 				
 				String digitado = capturarValorDigitado("Digite o x e y do campo (Ex.: 2,3): ");
