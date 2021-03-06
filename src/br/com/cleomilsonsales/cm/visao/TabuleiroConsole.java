@@ -28,6 +28,7 @@ public class TabuleiroConsole {
 			System.out.println("Ao abrir um campo sera aberta vizinhança desse campo, se a vizinha for segura continuar sendo aberto");
 			System.out.println("Ao abrir um campos vizinhos e for localizado uma mina na vizinha, sera truncada a abertura de campos");
 			System.out.println("O campos proximo de minas serão sinalizadas com quantidade de minas na vizinhança");
+			System.out.println("Ao marca todas as minas e abrir todos os campos seguros, vencerá o jogo.");
 			System.out.println();
 			
 			while(continuar) {
